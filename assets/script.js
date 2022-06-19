@@ -1,10 +1,10 @@
 // Assignment code here
-var characterLength;
+var characterLength = [];
 var selectLowercase;
-var lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
-var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numbers = "0123456789";
-var specialChars = "!@#$%^&*()_-+={}[];:'`~<,>.?/|";
+var lowercaseChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var uppercaseChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var specialChars = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "}", "[", "]", ";", ":", "'", "`", "~", "<", ",", ">", ".", "?", "/", "|"];
 
 // Function to select length of charcters for password
 function choosePassword() {
@@ -36,18 +36,32 @@ function choosePassword() {
   return passwordOptions;
 }
 
-// Function to select lowercase characters for password
-// Function to select uppercase characters for password
-
 function generatePassword() {
   var options = choosePassword();
-  var finalPassword = [];
+  var finalPassword =[];
   var charactersUsed = [];
   var possibleCharacters = [];
   if (options.selectLowercase) {
     possibleCharacters = possibleCharacters.concat(lowercaseChars);
     charactersUsed.push(lowercaseChars);
   }
+  if (options.selectUppercase) {
+    possibleCharacters = possibleCharacters.concat(uppercaseChars);
+    charactersUsed.push(uppercaseChars);
+  }
+  if (options.selectNumbers) {
+    possibleCharacters = possibleCharacters.concat(numbers);
+    charactersUsed.push(numbers);
+  }
+  if (options.selectSpecial) {
+    possibleCharacters = possibleCharacters.concat(specialChars);
+    charactersUsed.push(specialChars);
+  }
+    for (let i = 0; i < characterLength; i++) {
+      let randomize =[Math.floor(Math.random() * possibleCharacters.length)];
+      finalPassword = finalPassword + possibleCharacters[randomize];
+    }
+  return finalPassword;
 };
 
 // Get references to the #generate element
