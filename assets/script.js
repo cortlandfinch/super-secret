@@ -22,10 +22,12 @@ function choosePassword() {
   if (characterLength > 128){
     alert("Your password length must be less than 128 characters!");
   }
+  // Confirm messages to prompt the user to click Ok or Cancel to add password options to their random generated password
   var selectLowercase = confirm("Please choose if you would like to include lowercase characters in your password. (Note: click Ok for Yes or Cancel for No).");
   var selectUppercase = confirm("Please choose if you would like to include uppercase characters in your password. (Note: click Ok for Yes or Cancel for No).");
   var selectNumbers = confirm("Please choose if you would like to include numbers in your password. (Note: click Ok for Yes or Cancel for No).");
   var selectSpecial = confirm("Please choose if you would like to include special characters in your password. (Note: click Ok for Yes or Cancel for No).");
+  // Variable to pass length, lowercase, uppercase, numbers and special characters through passwordOptions
   var passwordOptions = {
     characterLength: characterLength,
     selectLowercase: selectLowercase,
@@ -33,9 +35,11 @@ function choosePassword() {
     selectNumbers: selectNumbers,
     selectSpecial: selectSpecial
   }
+  // Returns password options once choices are made
   return passwordOptions;
 }
 
+// Function to generate  password
 function generatePassword() {
   var options = choosePassword();
   var finalPassword =[];
@@ -57,6 +61,7 @@ function generatePassword() {
     possibleCharacters = possibleCharacters.concat(specialChars);
     charactersUsed.push(specialChars);
   }
+  // For Loop statement to randomize password
     for (let i = 0; i < characterLength; i++) {
       let randomize =[Math.floor(Math.random() * possibleCharacters.length)];
       finalPassword = finalPassword + possibleCharacters[randomize];
